@@ -11,45 +11,47 @@ export function CreateUser() {
   const {
     register,
     handleSubmit,
-    
+
     reset,
-    
   } = useForm<User>({ resolver: zodResolver(userSchema) });
   const submit = (data: User) => {
     console.log(data);
-    reset()
+    reset();
   };
-const onError = (formErrors: FieldErrors<User>) => {
-  Object.values(formErrors).forEach((error) => {
-    if (error?.message) {
-      toast.error(String(error.message));
-    }
-  });
-};
+  const onError = (formErrors: FieldErrors<User>) => {
+    Object.values(formErrors).forEach((error) => {
+      if (error?.message) {
+        toast.error(String(error.message));
+      }
+    });
+  };
 
-  return (<div className="w-full h-screen bg-green-700">
-
-    <form autoComplete="on"
-      onSubmit={handleSubmit(submit, onError)}
-      className="w-full h-full bg-blue-400 flex flex-col items-center justify-center gap-5"
-    >
-      <input
-        type="text"
-        className="bg-blue-300 p-3 rounded-2xl outline-none"
-        {...register("name")}
-        placeholder="name"
-      />
-      <input
-        type="email"
-        className="bg-blue-300 p-3 rounded-2xl outline-none"
-        {...register("emil")}
-        placeholder="email"
-      />
-      <button
-        type="submit"
-        className="bg-violet-600 cursor-pointer p-3 rounded-2xl"
-      >submit</button>
-    </form>
-  </div>
+  return (
+    <div className="w-full h-screen bg-blue-400   grid place-items-center">
+      <form
+        autoComplete="on"
+        onSubmit={handleSubmit(submit, onError)}
+        className=" flex flex-col items-center justify-center gap-5"
+      >
+        <input
+          type="text"
+          className="bg-blue-300 p-3 rounded-2xl outline-none"
+          {...register("name")}
+          placeholder="name"
+        />
+        <input
+          type="email"
+          className="bg-blue-300 p-3 rounded-2xl outline-none"
+          {...register("emil")}
+          placeholder="email"
+        />
+        <button
+          type="submit"
+          className="bg-violet-600 cursor-pointer p-3 rounded-2xl"
+        >
+          submit
+        </button>
+      </form>
+    </div>
   );
 }
