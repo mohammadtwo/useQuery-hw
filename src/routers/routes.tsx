@@ -1,7 +1,9 @@
 import type { JSX } from "react";
 import { HomePage } from "../pages/home/homePage"
+import { CreateUser } from "../components/createUser/createUser";
 
-const pathRouters={home:"/"}
+export const pathRouters = { home: "/", createUser: "/createUser" };
 export const routesArray: { path: string; element: JSX.Element }[] = [
   { path: pathRouters.home, element: <HomePage/> },
+  { path: pathRouters.createUser, element: <CreateUser/> },
 ];
