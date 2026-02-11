@@ -1,5 +1,5 @@
 import { useForm, type FieldErrors } from "react-hook-form";
-import type { User } from "../../types/types";
+import type { User, UserWithId } from "../../types/types";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
@@ -11,14 +11,16 @@ export function CreateUser() {
   const {
     register,
     handleSubmit,
-
+  
     reset,
-  } = useForm<User>({ resolver: zodResolver(userSchema) });
+    
+  } = useForm<User|UserWithId>({ resolver: zodResolver(userSchema) });
   const submit = (data: User) => {
     console.log(data);
     reset();
   };
-  const onError = (formErrors: FieldErrors<User>) => {
+
+  const onError = (formErrors: FieldErrors<User|UserWithId>) => {
     Object.values(formErrors).forEach((error) => {
       if (error?.message) {
         toast.error(String(error.message));
