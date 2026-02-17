@@ -1,28 +1,25 @@
-import { Link } from "react-router-dom";
 import { pathRouters } from "../../routers/routes";
+import { Card } from "../card";
+import { useUsers } from "../../hooks/useQuery";
+import { Link } from "react-router-dom";
 
 export function Home() {
+      const { data,isLoading } = useUsers();
+
+  
   return (
     <div className="w-full h-screen p-10 bg-blue-500 ">
       <div className="flex flex-col gap-4 h-full">
-        <div className="flex-1 overflow-y-auto">
-          <div className="flex flex-col w-50 h-60 rounded-xl items-center p-3 bg-white">
-            <div className="flex-1 flex flex-col gap-2 items-center ">
-              <h2>test name</h2>
-              <p>test email</p>
-            </div>
-            <div className="flex justify-between gap-3 w-full">
-              <button className="text-white flex-1 hover:bg-pink-600 cursor-pointer bg-pink-700 rounded-2xl  p-2 ">
-                edit
-              </button>
-              <button className="p-2  flex-1  hover:bg-red-500 cursor-pointer text-white  bg-red-700 rounded-2xl">
-                remove
-              </button>
-            </div>
-          </div>
+        <div className="flex-1 flex w-full flex-wrap gap-3 overflow-y-auto">
+          {isLoading?<div>{"isLoading..."}</div>:data?.map((item) =>{ 
+              return  <Card id={item.id} key={item.id} name={item.name} emil={item.name} />
+          })}
         </div>
         <div className="flex gap-5 h-10">
-          <Link to={pathRouters.createUser} className="p-2 flex-1 text-center hover:bg-green-500 cursor-pointer text-white bg-green-600 rounded-2xl">
+          <Link
+            to={pathRouters.createUser}
+            className="p-2 flex-1 text-center hover:bg-green-500 cursor-pointer text-white bg-green-600 rounded-2xl"
+          >
             add
           </Link>
         </div>

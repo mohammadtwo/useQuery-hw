@@ -7,7 +7,7 @@ function App() {
     <>
       <QueryProvider>
         <RouterPages />
-        <ToastContainer position="top-center" autoClose={3000} className={""} />
+        <ToastContainer position="top-center" autoClose={3000}  />
       </QueryProvider>
     </>
   );
