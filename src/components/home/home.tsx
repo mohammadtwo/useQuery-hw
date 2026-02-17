@@ -12,7 +12,7 @@ export function Home() {
       <div className="flex flex-col gap-4 h-full">
         <div className="flex-1 flex w-full flex-wrap gap-3 overflow-y-auto">
           {isLoading?<div>{"isLoading..."}</div>:data?.map((item) =>{ 
-              return  <Card id={item.id} key={item.id} name={item.name} emil={item.name} />
+              return  <Card id={item.id} key={item.id} name={item.name} emil={item.emil} />
           })}
         </div>
         <div className="flex gap-5 h-10">
